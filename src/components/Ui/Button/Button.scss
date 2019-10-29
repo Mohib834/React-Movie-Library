@@ -1,0 +1,24 @@
+@import "../../../assets/styles/variables";
+
+.Button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: $color-tertiary;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  border: 1px solid $color-tertiary;
+
+  &__transparent {
+    background: transparent;
+    transition: all 0.3s;
+
+    &:hover {
+      background: $color-tertiary;
+    }
+  }
+
+  &:hover {
+    background: darken($color-tertiary, 4%);
+  }
+}

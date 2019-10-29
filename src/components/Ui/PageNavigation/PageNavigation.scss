@@ -1,0 +1,14 @@
+.PageNavigation {
+  &__btn {
+    background: transparent;
+    border: none;
+    font-size: 4.5rem;
+    color: #fff;
+    cursor: pointer;
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+  }
+}

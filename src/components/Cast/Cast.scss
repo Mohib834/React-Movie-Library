@@ -1,0 +1,11 @@
+.Cast {
+  strong {
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+  &__container {
+    margin-top: 2rem;
+    width: 455px;
+    margin-left: -10px;
+  }
+}

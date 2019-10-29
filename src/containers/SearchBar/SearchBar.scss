@@ -1,0 +1,67 @@
+@import "../../assets/styles/variables";
+
+.SearchBar {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+  justify-content: center;
+  display: none;
+
+  form {
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    overflow: hidden;
+    padding: 0 3.5rem;
+    height: 50px;
+    i {
+      margin-right: -10px;
+      background: $color-tertiary;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+      border-radius: 100px;
+      width: 43px;
+      height: 43px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:active {
+        transform: scale(0.9) translateZ(0);
+        backface-visibility: hidden;
+      }
+    }
+    input[type="text"] {
+      font-family: inherit;
+      text-align: center;
+      border: none;
+      background: transparent;
+      color: #fff;
+      width: 0%;
+      margin-left: 1rem;
+      display: none;
+
+      &::placeholder {
+        font-size: 14px;
+        color: inherit;
+        letter-spacing: 1.6px;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+}

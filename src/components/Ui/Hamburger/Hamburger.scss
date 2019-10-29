@@ -1,0 +1,20 @@
+.Hamburger {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
+  span {
+    display: inline-block;
+    background: #fff;
+    width: 30px;
+    height: 2px;
+    margin: 0.3rem 0;
+  }
+}

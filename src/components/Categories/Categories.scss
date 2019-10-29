@@ -1,0 +1,92 @@
+@import "../../assets/styles/variables";
+
+.Categories {
+  font-size: 1.4rem;
+  background: #232d32;
+  height: 100%;
+  &__title {
+    padding: 4rem;
+    margin-left: 6px;
+    font-weight: 700;
+    font-size: 2.4rem;
+    letter-spacing: 1.5px;
+    text-align: center;
+    // font-family: "Rock Salt", cursive;
+  }
+
+  &__secondaryTitle {
+    font-weight: 700;
+    padding: 1.8rem 4rem;
+    text-transform: uppercase;
+    color: $color-secondary;
+    margin-left: 6px;
+    font-size: 12px;
+    &:nth-of-type(1) {
+      margin-top: 1rem;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin-top: 0;
+    padding: 0;
+    a {
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      display: block;
+      z-index: 2;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0%;
+        height: 0%;
+        width: 2%;
+        background: lighten($color-primary, 10%);
+        z-index: -1;
+        transition: height 0.5s ease-out, width 0.3s 0.3s;
+        border-left: 2px solid $color-tertiary;
+      }
+
+      li {
+        padding: 0.8rem 2rem;
+        font-weight: 600;
+        i {
+          margin-left: 2.5rem;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+
+  .activeCategory {
+    &::after {
+      width: 99%;
+      height: 100%;
+    }
+  }
+
+  ul:nth-of-type(3) {
+    border-top: 1px solid $color-secondary;
+    width: 75%;
+    margin: 4rem auto;
+    color: $color-secondary;
+    li {
+      padding: 1rem 0;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+
+  .tmdbContainer {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 120px;
+    }
+  }
+}

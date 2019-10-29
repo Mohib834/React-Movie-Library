@@ -1,0 +1,15 @@
+@import "../../assets/styles/variables";
+
+.MoviesFeatured {
+  h2 {
+    font-size: 3.5rem;
+    position: relative;
+    font-weight: 400;
+    display: inline-block;
+  }
+
+  a:focus,
+  a:active {
+    outline: none;
+  }
+}

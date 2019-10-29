@@ -1,0 +1,12 @@
+@import "../../assets/styles/variables";
+
+.Navbar {
+  width: 1250px;
+  padding: 2rem 1rem;
+  margin: 1rem auto;
+  border-radius: 5px;
+  color: #fff;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  background: darken($color-primary, 10%);
+}

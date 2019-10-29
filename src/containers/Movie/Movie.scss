@@ -1,0 +1,93 @@
+.Movie {
+  height: 100vh;
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__navigation {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 5rem;
+  }
+
+  &__details {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 5rem;
+
+    & > div:nth-of-type(1) {
+      width: 66%;
+    }
+  }
+
+  &__title {
+    font-size: 5.5rem;
+    font-weight: 300;
+    margin: 0.6rem 0;
+    margin-left: 0;
+  }
+  .extra {
+    font-size: 13px;
+    margin-left: 0.5rem;
+    margin-bottom: 3rem;
+
+    .genre {
+      padding-right: 0.7rem;
+      &:not(:first-child) {
+        padding-left: 0.7rem;
+      }
+    }
+  }
+
+  &__synopsis {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-left: 0.5rem;
+    width: 80%;
+
+    strong {
+      font-size: 16px;
+      margin-bottom: 1rem;
+      display: block;
+      text-transform: uppercase;
+    }
+  }
+
+  &__actions {
+    margin: 3rem 0;
+    margin-left: 0.5rem;
+
+    i {
+      font-size: 14px;
+      margin-right: 0.5rem;
+    }
+    a {
+      margin-right: 2rem;
+    }
+  }
+
+  &__castDetails {
+    margin-left: 0.5rem;
+  }
+
+  &__poster {
+    box-shadow: 0px 0px 62px 14px rgba(0, 0, 0, 0.6);
+    height: 51rem;
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .box {
+    border: 1px solid #999;
+    padding: 0.3rem 0.5rem;
+    display: inline-block;
+    color: #999;
+    margin-left: 1rem;
+  }
+}
