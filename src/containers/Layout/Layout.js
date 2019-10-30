@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import tmdbApi from '../../api/tmdb';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { TimelineLite, Power3 } from 'gsap';
+import { Switch, Route } from 'react-router-dom';
+import { TimelineLite } from 'gsap';
 
-import SearchBar from '../SearchBar/SearchBar';
 import MoviesBox from '../MoviesBox/MoviesBox'
 import classes from './Layout.scss';
 import Categories from '../../components/Categories/Categories';
 import Movie from '../Movie/Movie';
 import MoviesFeatured from '../../components/MoviesFeatured/MoviesFeatured';
 import Navbar from '../../components/Navbar/Navbar';
+import Footer from '../../components/Footer/Footer';
 
 
 // All state will be managed here.
@@ -145,13 +145,13 @@ class Layout extends Component {
                         <Route path="/" render={() => ( // Route for '/'
                             <React.Fragment>
                                 <Navbar openNav={this.openNavHandler} />
-                                <SearchBar openNav={this.openNavHandler} searchMovie={this.searchMovieHandler} />
                                 <div className={classes.Layout__featured}>
                                     <MoviesFeatured featuredMovies={featuredMovies} />
                                 </div>
                                 <MoviesBox getDiscoverMovies={this.getDiscoverMoviesHandler} type="popular" category="popular" />
                                 <MoviesBox getDiscoverMovies={this.getDiscoverMoviesHandler} type="top_rated" category="top rated" />
                                 <MoviesBox getDiscoverMovies={this.getDiscoverMoviesHandler} type="upcoming" category="upcoming" />
+                                <Footer />
                             </React.Fragment>
                         )} />
                     </Switch>

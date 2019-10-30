@@ -3,15 +3,10 @@
 .SearchBar {
   display: flex;
   align-items: center;
-  padding-top: 1rem;
-  position: absolute;
   top: 0;
   right: 0;
-  width: 100%;
   z-index: 100;
   justify-content: center;
-  display: none;
-
   form {
     z-index: 10;
     display: flex;
@@ -19,7 +14,6 @@
     justify-self: center;
     overflow: hidden;
     padding: 0 3.5rem;
-    height: 50px;
     i {
       margin-right: -10px;
       background: $color-tertiary;

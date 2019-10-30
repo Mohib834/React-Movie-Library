@@ -1,0 +1,25 @@
+@import "../../assets/styles/variables";
+
+.Footer {
+  color: #fff;
+  background: $color-tertiary;
+  padding: 1.8rem;
+  margin-top: 10rem;
+
+  .Container {
+    width: 1250px;
+    max-width: 1250px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    // font-size: 15px;
+  }
+
+  &__img {
+    position: relative;
+    left: -32px;
+    width: 50px;
+  }
+}

@@ -36,7 +36,6 @@ class SearchBar extends Component {
         const { searchQuery } = this.state;
         return (
             <div className={classes.SearchBar}>
-                <Hamburger openNav={this.props.openNav} />
                 <form onSubmit={this.handleSubmit}>
                     <i onClick={this.handleClick} className="fa fa-search"></i>
                     <input ref={el => this.searchbar = el} type="text" value={searchQuery} placeholder="Search Movies" onChange={this.handleChange} />

@@ -3,7 +3,7 @@
 .Navbar {
   // width: 1250px;
   width: 100%;
-  padding: 1.6rem 1rem;
+  padding: 0.7rem 1rem;
   margin: 0 auto;
   // border-radius: 5px;
   color: #fff;
@@ -14,5 +14,8 @@
   &__content {
     width: 1250px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }
