@@ -26,7 +26,18 @@
   width: 1250px;
   max-width: 1250px;
   margin: auto;
-  margin-top: 7rem;
+  margin-bottom: 4rem;
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    a {
+      position: relative;
+      top: 9px;
+      left: -32px;
+    }
+  }
 }
 
 .MoviesBox {

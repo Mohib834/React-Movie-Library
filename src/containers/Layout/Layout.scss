@@ -27,8 +27,9 @@
 
   &__featured {
     // width: 95%;
-    max-width: 1250px;
-    width: 1250px;
+    // max-width: 1250px;
+    width: 100vw;
     margin: auto;
+    margin-bottom: 7rem;
   }
 }

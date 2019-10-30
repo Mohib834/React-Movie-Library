@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import classes from './MoviesBox.scss';
 import loader from '../../assets/img/loader.gif';
 import MovieBox from '../../components/MovieBox/MovieBox';
-import { TimelineLite, Power3 } from 'gsap';
 import Slider from 'react-slick';
+import Button from '../../components/Ui/Button/Button';
 
 class MoviesBox extends Component {
     constructor(props) {
@@ -42,9 +42,12 @@ class MoviesBox extends Component {
             <Fragment>
                 {isLoading ? <img src={loader} className={classes.Loader} alt="loading icon" /> : (
                     <div ref={el => this.container = el} className={classes.Container}>
-                        <h2 className={classes.CategoryTitle}>
-                            {this.props.category}
-                        </h2>
+                        <div className={classes.Container__top}>
+                            <h2 className={classes.CategoryTitle}>
+                                {this.props.category}
+                            </h2>
+                            <Button>View More</Button>
+                        </div>
                         <div className={classes.MoviesBox}>
                             <Slider {...settings}>
                                 {movies.map(movie => (

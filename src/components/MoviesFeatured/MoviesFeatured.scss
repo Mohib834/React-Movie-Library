@@ -1,6 +1,9 @@
 @import "../../assets/styles/variables";
 
 .MoviesFeatured {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  // border-radius: 5px;
+  overflow: hidden;
   h2 {
     font-size: 3.5rem;
     position: relative;
