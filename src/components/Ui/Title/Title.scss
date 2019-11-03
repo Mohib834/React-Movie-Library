@@ -1,0 +1,35 @@
+@import "../../../assets/styles/variables";
+
+.Title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 6rem;
+
+  a {
+    position: relative;
+    top: 9px;
+    left: -32px;
+  }
+
+  &__title {
+    text-transform: capitalize;
+    display: inline-block;
+    margin-top: 0;
+    font-size: 3.5rem;
+    margin-bottom: 0;
+    font-weight: 400;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      padding: 0.5rem 0;
+      top: 0;
+      left: 0;
+      width: 40%;
+      height: 100%;
+      border-bottom: 3px solid $color-tertiary;
+    }
+  }
+}

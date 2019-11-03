@@ -5,7 +5,7 @@ import ImgLoader from '../../components/Ui/ImgLoader/ImgLoader';
 
 
 const MovieBox = (props) => {
-    const baseUrl = 'http://image.tmdb.org/t/p/w342';
+    const baseUrl = 'http://image.tmdb.org/t/p/w780';
     const [imgLoading, setImgLoading] = useState(true);
 
     const handleImgLoad = () => {

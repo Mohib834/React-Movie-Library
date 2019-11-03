@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import classes from './MoviesBox.scss';
 import loader from '../../assets/img/loader.gif';
 import MovieBox from '../../components/MovieBox/MovieBox';
 import Slider from 'react-slick';
 import Button from '../../components/Ui/Button/Button';
+import Title from '../../components/Ui/Title/Title';
 
 class MoviesBox extends Component {
     constructor(props) {
@@ -14,15 +14,19 @@ class MoviesBox extends Component {
         }
     }
     componentDidMount() {
+        this.mounted = true
         this.props.getDiscoverMovies(this.props.type, 1, (err, response) => {
             if (err) {
                 console.log(err);
+            } else if (this.mounted && !err) {
+                this.setState({ movies: response.data.results })
             }
-            this.setState({ movies: response.data.results })
         });
     }
 
-
+    componentWillUnmount() {
+        this.mounted = false;
+    }
 
     render() {
         const { isLoading } = this.props;
@@ -42,12 +46,9 @@ class MoviesBox extends Component {
             <Fragment>
                 {isLoading ? <img src={loader} className={classes.Loader} alt="loading icon" /> : (
                     <div ref={el => this.container = el} className={classes.Container}>
-                        <div className={classes.Container__top}>
-                            <h2 className={classes.CategoryTitle}>
-                                {this.props.category}
-                            </h2>
-                            <Button>View More</Button>
-                        </div>
+                        <Title link="#" more={true}>
+                            {this.props.category}
+                        </Title>
                         <div className={classes.MoviesBox}>
                             <Slider {...settings}>
                                 {movies.map(movie => (

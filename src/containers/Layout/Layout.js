@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import tmdbApi from '../../api/tmdb';
 import { Switch, Route } from 'react-router-dom';
-import { TimelineLite } from 'gsap';
 
 import MoviesBox from '../MoviesBox/MoviesBox'
 import classes from './Layout.scss';
@@ -22,25 +21,28 @@ class Layout extends Component {
             genres: [],
             featuredMovies: [],
             isLoading: false,
-            navOpen: false,
             hideSearchBar: false
         }
     }
 
-    componentDidMount() {
-        const tl = new TimelineLite();
-
-        // Get the featured Movies
-        this.getFeaturedMoviesHandler();
-
+    async componentDidMount() {
+        this.setState({
+            isLoading: true
+        })
+        // Getting Featured Movies
+        const responseFeatured = await tmdbApi.get('/discover/movie', {
+            params: {
+                'vote_average.gte': 8
+            }
+        })
         // Getting the movie genre list
-        tmdbApi.get('/genre/movie/list')
-            .then(response => {
-                this.setState({ genres: response.data.genres }, () => {
-                    tl.to(this.layout, '.3', { opacity: 1, visibility: 'visible' });
-                })
-            })
-            .catch(err => console.log(err))
+        const responseGenreList = await tmdbApi.get('/genre/movie/list')
+
+        this.setState({
+            featuredMovies: responseFeatured.data.results,
+            genres: responseGenreList.data.genres,
+            isLoading: false
+        })
 
     }
 
@@ -53,8 +55,9 @@ class Layout extends Component {
             }
         }).then(response => {
             this.setState({
-                movies: response.data.results
-            }, this.setState({ isLoading: false }));
+                movies: response.data.results,
+                isLoading: false
+            });
         })
             .catch(err => console.log(err))
     }
@@ -68,52 +71,26 @@ class Layout extends Component {
     }
 
     getGenreMoviesHandler = (genreId, page = 1) => {
-        this.setState({ isLoading: true })
-
-        tmdbApi.get('/discover/movie', {
+        return tmdbApi.get('/discover/movie', {
             params: {
                 with_genres: genreId.toString(),
                 page
             }
-        }).then(response => {
-            this.setState({ movies: response.data.results, backgroundImgUrl: '' }, () => this.setState({ isLoading: false }))
-        }).catch(err => console.log(err));
+        })
     }
 
     getMovieByIdHandler = (movieId, cb) => { // Using the callback so that i can get the data / error from the movie component.
-        this.setState({ isLoading: true })
         tmdbApi.get(`/movie/${movieId}`, {
             params: {
                 append_to_response: 'credits'
             }
         })
             .then(response => {
-                this.setState({ isLoading: false, })
                 cb(null, response)
             })
             .catch(err => cb(err, null));
     }
 
-    getFeaturedMoviesHandler = () => {
-        tmdbApi.get('/discover/movie', {
-            params: {
-                'vote_average.gte': 8
-            }
-        }).then(response => this.setState({ featuredMovies: response.data.results }))
-            .catch(err => console.log(err));
-    }
-
-    openNavHandler = () => {
-        // Side Nav Animation 
-        const tl = new TimelineLite();
-        if (!this.state.navOpen) {
-            tl.to(this.aside, 1, { x: '0%' });
-            this.setState({ navOpen: true })
-        } else {
-            tl.to(this.aside, 1, { x: '-100%' });
-            this.setState({ navOpen: false })
-        }
-    }
 
     hideSearchBarHandler = (hide) => {
         this.setState({
@@ -122,14 +99,12 @@ class Layout extends Component {
     }
 
     render() {
-        const { movies, genres, featuredMovies, isLoading, hideSearchBar } = this.state;
+        const { genres, featuredMovies, isLoading, hideSearchBar } = this.state;
+        if (isLoading) {
+            return (<div>Loading...</div>)
+        }
         return (
             <div className={classes.Layout} ref={el => this.layout = el} >
-                <aside className={classes.Layout__left} ref={el => this.aside = el}>
-                    <Categories getDiscoverMovies={this.getDiscoverMoviesHandler} getGenreMovies={this.getGenreMoviesHandler} genres={genres} />
-                </aside>
-
-
                 <main className={classes.Layout__right}>
                     <Switch>
                         {/* <Route path="/discover/popular" render={() => <MoviesBox  category="popular" />} />
@@ -151,10 +126,11 @@ class Layout extends Component {
                                 <MoviesBox getDiscoverMovies={this.getDiscoverMoviesHandler} type="popular" category="popular" />
                                 <MoviesBox getDiscoverMovies={this.getDiscoverMoviesHandler} type="top_rated" category="top rated" />
                                 <MoviesBox getDiscoverMovies={this.getDiscoverMoviesHandler} type="upcoming" category="upcoming" />
-                                <Footer />
+                                <Categories genres={genres} getGenreMovies={this.getGenreMoviesHandler} />
                             </React.Fragment>
                         )} />
                     </Switch>
+                    {!hideSearchBar && <Footer />}
                 </main>
             </div>
         )

@@ -21,6 +21,8 @@ class Movie extends Component {
             this.setState({ movie: response.data })
         })
 
+        console.log(this.state);
+
         this.props.hideSearchBar(true);
     }
 

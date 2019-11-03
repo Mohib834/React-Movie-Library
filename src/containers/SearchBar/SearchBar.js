@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import classes from './SearchBar.scss';
-import Hamburger from '../../components/Ui/Hamburger/Hamburger';
 import { TimelineLite, Power3 } from 'gsap';
 
 class SearchBar extends Component {

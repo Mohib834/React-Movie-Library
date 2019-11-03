@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import classes from './Cast.scss';
 import CastItem from './CastItem/CastItem';
 import Slider from 'react-slick';

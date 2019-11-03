@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import classes from './MoviesFeatured.scss';
 import Slider from 'react-slick';
 import MovieFeatured from './MovieFeatured/MovieFeatured';
-import { Link } from 'react-router-dom';
+import uuidv1 from 'uuid/v1';
 
 const moviesFeatured = (props) => {
     const settings = {
@@ -19,9 +19,7 @@ const moviesFeatured = (props) => {
         <div className={classes.MoviesFeatured}>
             <Slider {...settings}>
                 {props.featuredMovies.map(movie => (
-                    <Link to={'/movie/' + movie.id}>
-                        <MovieFeatured movie={movie} />
-                    </Link>
+                    <MovieFeatured key={uuidv1()} movie={movie} />
                 ))}
             </Slider>
         </div>

@@ -1,46 +1,55 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import classes from './Categories.scss';
-import tmdbIcon from '../../assets/img/tmdb.png';
+import uuidv1 from 'uuid/v1';
+import Title from '../Ui/Title/Title';
 
-const categories = (props) => {
+const Categories = (props) => {
+
+    const [categories, setCategories] = useState([]);
+    const [req, setReq] = useState(false)
+
+    useEffect(() => {
+        setReq(true);
+
+        let categoryArr = []
+        // props.genres.map(genre => console.log(genre.id))
+        if (req) {
+            let promises = props.genres.map((genre) => {
+                return props.getGenreMovies(genre.id, 1);
+            })
+
+            Promise.all(promises)
+                .then(response => {
+                    categoryArr = { categoryNames: props.genres, categoriesMovies: response }
+                    setCategories(categoryArr)
+                })
+                .catch(err => console.log(err));
+        }
+        return () => {
+            setReq(false);
+        }
+    }, [req, props])
+
+    const baseUrl = 'http://image.tmdb.org/t/p/w1280';
+
+    if (categories.length === 0) {
+        return null;
+    }
+
     return (
         <div className={classes.Categories}>
-            <div className={classes.Categories__title}>
-                MovieBox
-                </div>
-            <div className={classes.Categories__secondaryTitle}>Browse MovieBox</div>
-            <ul>
-                <NavLink activeClassName={classes.activeCategory} to="/discover/popular" onClick={() => props.getDiscoverMovies('popular')}>
-                    <li><i className="fas fa-fire"></i>Popular</li>
-                </NavLink>
-
-                <NavLink activeClassName={classes.activeCategory} to="/discover/top_rated" onClick={() => props.getDiscoverMovies('top_rated')}>
-                    <li><i className="fas fa-chart-line"></i>Top Rated</li>
-                </NavLink>
-
-                <NavLink activeClassName={classes.activeCategory} to="/discover/upcoming" onClick={() => props.getDiscoverMovies('upcoming')}>
-                    <li><i className="fas fa-file-upload"></i>Upcoming</li>
-                </NavLink>
-            </ul>
-            <div className={classes.Categories__secondaryTitle}>Genres</div>
-            <ul>
-                {props.genres.map(genre => (
-                    <NavLink activeClassName={classes.activeCategory} key={genre.id} to={`/genre/${genre.name.toLowerCase()}`} onClick={() => props.getGenreMovies(genre.id)}>
-                        <li><i className="fas fa-ticket-alt"></i>{genre.name}</li>
-                    </NavLink>
-                ))}
-            </ul>
-            <ul>
-                <li className={classes.tmdbContainer}>
-                    <img src={tmdbIcon} alt="" />
-                </li>
-                <li>
-                    Copyright &copy; Mohib Arshi
-                </li>
-            </ul>
+            <Title>Categories</Title>
+            <div className={classes.Categories__list}>
+                {categories.categoriesMovies.map((results, idx) => {
+                    const result = results.data.results[7]; // 8th movie in every genre
+                    return (<div key={uuidv1()} className={classes.Categories__category}>
+                        <img src={baseUrl + result.backdrop_path} alt="" />
+                        <h3 className={classes.Categories__name}>{categories.categoryNames[idx].name}</h3>
+                    </div>)
+                })}
+            </div>
         </div>
     )
 }
 
-export default categories;
+export default Categories;

@@ -10,7 +10,7 @@ const castItem = (props) => {
     return (
         <div className={classes.CastItem}>
             <div className={classes.CastItem__imgContainer}>
-                <img src={profile_path ? baseUrl + profile_path : noImg} className={!profile_path && classes.noImg} alt='Cast image' />
+                <img src={profile_path ? baseUrl + profile_path : noImg} className={!profile_path && classes.noImg} alt='' />
             </div>
             <div className={classes.CastItem__name}>
                 {nameArr[0]}

@@ -2,11 +2,8 @@
 
 .MovieBox {
   width: 22rem;
-  margin-top: 4rem;
   overflow: hidden;
   position: relative;
-  border-radius: 1px;
-
   &__imgContainer {
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     // border-radius: 5px;
@@ -17,12 +14,12 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    border-radius: 5px;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 5px;
     }
   }
 

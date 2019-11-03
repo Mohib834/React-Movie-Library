@@ -1,7 +1,8 @@
 @import "../../../assets/styles/variables";
 
 .MovieFeatured {
-  min-height: 440px;
+  min-height: 75vh;
+  color: #fff;
   // height: 440px;
   background-size: cover;
   position: relative;
@@ -13,12 +14,6 @@
     display: inline-block;
     width: 1250px;
     margin: 0 auto;
-    p {
-      strong {
-        color: #fff;
-      }
-      color: #fff;
-    }
   }
 
   &__title {

@@ -5,7 +5,6 @@ import truncate from '../../../helperFunctions/truncate';
 import Button from '../../Ui/Button/Button';
 
 const movieFeatured = (props) => {
-    console.log(props.movie);
     const styles = {
         backgroundImage: `radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, rgba(0,0,0,0.74) 73%, rgba(0,0,0,1) 100%),url(http://image.tmdb.org/t/p/w1280/${props.movie.backdrop_path})`,
     }
